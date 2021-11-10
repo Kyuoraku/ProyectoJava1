@@ -7,27 +7,36 @@ public class App {
 		Integer token = (int) (Math.random() * ( 999999 - 100000 ));
 		String usuario = "administrador";
 		String contrasena = "administrador.1234";
-		String usuarioIn, contrasenaIn, tokenIn, reintentar = "S";
+		String usuarioIn = "", contrasenaIn= "", tokenIn = "", reintentar = "S";
 		Integer intentosRestantes = 3;
 		Scanner console = new Scanner(System.in);
 		Boolean fallo = Boolean.FALSE;
 		
 		
 		System.out.println("Bievenido a Online Banking, por favor ingrese las credenciales solicitadas: \n");
-		
-		while (intentosRestantes > 0 && reintentar.equals("S")) {
+
+
+		System.out.print("Clave token generada automáticamente: ");
+		System.out.print(token.toString()+"\n");
+
+
+		do{
 			intentosRestantes--;
-			System.out.print("Clave token generada automáticamente: ");
-			System.out.print(token.toString()+"\n");
+
+			do{
+				System.out.println("Usuario: ");
+				usuarioIn = console.nextLine().toLowerCase();
+			}while (usuarioIn == "");
 			
-			System.out.println("Usuario: ");
-			usuarioIn = console.nextLine().toLowerCase();
-			
-			System.out.println("Contraseña: ");
-			contrasenaIn = console.nextLine().toLowerCase();
-			
-			System.out.println("Clave Token: ");
-			tokenIn = console.nextLine().toLowerCase();
+			do {
+				System.out.println("Contraseña: ");
+				contrasenaIn = console.nextLine();
+			}while (contrasenaIn == "");
+
+			do {
+				System.out.println("Clave Token: ");
+				tokenIn = console.nextLine().toLowerCase();
+			}while (tokenIn == "");
 			
 			Integer tokenInParseado = Integer.parseInt(tokenIn);
 			
@@ -57,16 +66,13 @@ public class App {
 				}else {
 					System.out.println("Error de credenciales. Usuario bloqueado, por favor dirijase a la sucursal mas cercana.");
 				}
-
 			}
-			
-			
-		}
+		}while (intentosRestantes > 0 && reintentar.equals("S"));
 		
 
 		
 		
-		
+		console.close();
 
 		
 	}
